@@ -602,7 +602,26 @@ function swapHeadAndTail(arr) {
     .concat(middleElement, arr.slice(0, Math.floor(length / 2)));
 }
 
+/**
+ * Returns a new array where each element is the sum of the corresponding elements
+ * from two arrays. Arrays can have different lengths.
+ *
+ * @param {array} arr1 - The first array.
+ * @param {array} arr2 - The second array.
+ * @return {array} - An array containing the sum of corresponding elements.
+ *
+ * @example
+ *    sumArrays([1, 2, 3], [4, 5, 6]) => [5, 7, 9]
+ *    sumArrays([10, 20, 30], [5, 10, 15]) => [15, 30, 45]
+ *    sumArrays([-1, 0, 1], [1, 2, 3, 4]) => [0, 2, 4, 4]
+ */
+function sumArrays(arr1, arr2) {
+  const sum = arr1.map((item, index) => item + (arr2[index] || 0));
+  return arr2.length > arr1.length ? sum.concat(arr2.slice(arr1.length)) : sum;
+}
+
 module.exports = {
+  sumArrays,
   findElement,
   generateOdds,
   doubleArray,
