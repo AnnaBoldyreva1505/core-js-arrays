@@ -665,7 +665,32 @@ function createNDimensionalArray(n, size) {
   return result;
 }
 
+function flattenArray(nestedArray) {
+  return nestedArray.flat(nestedArray.length);
+}
+
+function calculateBalance(arr) {
+  return arr.reduce(
+    (balance, [income, expense]) => balance + income - expense,
+    0
+  );
+}
+
+function createChunks(arr, chunkSize) {
+  // !!!!!!!!!!!
+  const result = [];
+
+  for (let i = 0; i < arr.length; i += chunkSize) {
+    result.push(arr.slice(i, i + chunkSize));
+  }
+
+  return result;
+}
+
 module.exports = {
+  createChunks,
+  calculateBalance,
+  flattenArray,
   createNDimensionalArray,
   isValueEqualsIndex,
   isSameLength,
