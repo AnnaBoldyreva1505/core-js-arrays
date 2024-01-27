@@ -708,20 +708,23 @@ function findCommonElements(arr1, arr2) {
 }
 
 function findLongestIncreasingSubsequence(nums) {
-  const n = nums.length;
-  if (n === 0) return 0;
+  if (nums.length === 0) {
+    return 0;
+  }
 
-  const dp = new Array(n).fill(1);
+  let max = 1;
+  let current = 1;
 
-  for (let i = 1; i < n; i += 1) {
-    for (let j = 0; j < i; j += 1) {
-      if (nums[i] > nums[j] && dp[i] < dp[j] + 1) {
-        dp[i] = dp[j] + 1;
-      }
+  for (let i = 1; i < nums.length; i += 1) {
+    if (nums[i] > nums[i - 1]) {
+      current += 1;
+      max = Math.max(max, current);
+    } else {
+      current = 1;
     }
   }
 
-  return Math.max(...dp);
+  return max;
 }
 
 module.exports = {
