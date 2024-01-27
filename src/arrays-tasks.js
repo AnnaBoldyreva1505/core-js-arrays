@@ -620,7 +620,56 @@ function sumArrays(arr1, arr2) {
   return arr2.length > arr1.length ? sum.concat(arr2.slice(arr1.length)) : sum;
 }
 
+/**
+ * Returns the average of all items in the specified array of numbers.
+ * The result should be rounded to two decimal places.
+ *
+ * @param {array} arr - The input array
+ * @return {number} - The average of all items
+ *
+ * @example
+ *   getAverage([]) => 0
+ *   getAverage([ 1, 2, 3 ]) => 2
+ *   getAverage([ -1, 1, -1, 1 ]) => 0
+ *   getAverage([ 1, 10, 100, 1000 ])  => 277,75
+ *   getAverage([ 2, 3, 3 ])  => 2,67
+ */
+function getAverage(arr) {
+  // throw new Error('Not implemented');
+  if (arr.length === 0) return 0;
+  const sum = arr.reduce((acc, num) => {
+    return acc + num;
+  }, 0);
+
+  return Math.round((sum / arr.length) * 100) / 100;
+}
+
+function isSameLength(arr) {
+  // throw new Error('Not implemented');
+  if (arr.length === 0) return true;
+
+  return arr.every((str) => str.length === arr[0].length);
+}
+
+function isValueEqualsIndex(arr) {
+  return arr.some((value, idx) => value === idx);
+}
+
+function createNDimensionalArray(n, size) {
+  let result = new Array(size).fill(0);
+
+  for (let i = 1; i < n; i += 1) {
+    result = result.map(() => new Array(size).fill(0));
+  }
+
+  return result;
+}
+
 module.exports = {
+  createNDimensionalArray,
+  isValueEqualsIndex,
+  isSameLength,
+  getAverage,
   sumArrays,
   findElement,
   generateOdds,
